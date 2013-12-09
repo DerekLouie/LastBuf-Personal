@@ -56,8 +56,8 @@ function! s:openLastBuf() "{{{
     if len(s:bufList) != 0
         " reopen the tab
         let [b,w] = remove(s:bufList,0)
-        echo w." sb ".b
-        exec w." sb ".b
+        " echo w." s ".b
+        exec w." b ".b."|e"
         
         " remove long list last items
         if len(s:bufList) > g:lastbuf_num+10
