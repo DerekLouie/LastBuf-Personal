@@ -29,12 +29,16 @@ function! s:setLastBuf() "{{{
     else
         let s:w = ''
     endif
+    " echo "setLastBuf"
+    " echo s:bufList
 endfunction "}}}
 function! s:addLastBuf() "{{{
     let b = expand('<abuf>') 
     if b > 0
         call insert(s:bufList,[b,s:w])
     endif
+    " echo "addLastBuf" 
+    " echo s:bufList
 endfunction "}}}
 function! s:chkLastBuf(e) "{{{
     if ( a:e=="unload" && g:lastbuf_level == 0 ) 
@@ -45,11 +49,14 @@ function! s:chkLastBuf(e) "{{{
             call remove(s:bufList,0)
         endif
     endif
+    " echo "chkLastBuffer"
+    " echo s:bufList
 endfunction "}}}
 function! s:openLastBuf() "{{{
     if len(s:bufList) != 0
         " reopen the tab
         let [b,w] = remove(s:bufList,0)
+        echo w." sb ".b
         exec w." sb ".b
         
         " remove long list last items
